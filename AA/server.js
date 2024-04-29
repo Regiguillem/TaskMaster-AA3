@@ -7,10 +7,16 @@ require("dotenv").config();
 const { typeDefs } = require("./typeDefs");
 const { resolvers } = require("./resolvers");
 const panelRoutes = require("./app/routes/panel.routes");
-const taskRoutes = require("./app/routes/task.routes");
+const taskRoutes = require("./app/routes/task.routes"); 
 const socketIo = require("socket.io");
 
-const io = socketIo(3000);
+const io = socketIo(8888);
+
+// io.on("connection", (socket) => {
+//   socket.on("NewTarea", (arg) => {
+//     resolvers.addTask(arg);
+//   });
+// });
 
 const app = express();
 
