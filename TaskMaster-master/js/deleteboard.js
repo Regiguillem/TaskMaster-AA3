@@ -7,7 +7,8 @@ deleteModal.addEventListener('shown.bs.modal', event => {
     currentBoard = button.getAttribute('data-id')
 })
 
-function deleteBoard() {
+function deletePanel(myBoard) {
+    console.log('entramos por qaui',myBoard, currentBoard);
     const board = document.getElementById(currentBoard)
-    board.remove()
+    // board.remove()
 }

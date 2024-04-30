@@ -10,10 +10,8 @@
   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/style.css">
-
   <!--Iconos de google-->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -21,54 +19,65 @@
   <div class="container-fluid bg-dark header pt-5 fixed-top">
     <div class="row">
       <div class="col-1 text-white position-absolute start-50 translate-middle pb-5">
-        <img src="./images/Taskmaster.png" style="width: 250px; height: auto;  display: block;margin: 0 auto;">
+        <img src="./images/Taskmaster.png" style="width: 250px; height: auto; display: block; margin: 0 auto;">
       </div>
     </div>
   </div>
+
   <!--Menu-->
   <div class="sidebar pt-5 text-white position-fixed vh-100 d-flex flex-column justify-content-between">
     <div>
-      <a href="./index.html" class="d-block my-2"><span class="material-symbols-outlined p-3">home</span>Inicio</a>
-      <a href="./board.html" class="d-block my-2"><span class="material-symbols-outlined p-3">task</span>Mis
-        tableros</a>
-      <a href="./newboard.html" class="d-block my-2"><span class="material-symbols-outlined p-3">add_task</span>Nuevo
-        tablero</a>
+      <a href="./index.html" class="d-block my-2">
+        <span class="material-symbols-outlined p-3">home</span>Inicio
+      </a>
+      <a href="./board.html" class="d-block my-2">
+        <span class="material-symbols-outlined p-3">task</span>Mis tableros
+      </a>
+      <a href="./newboard.html" class="d-block my-2">
+        <span class="material-symbols-outlined p-3">add_task</span>Nuevo tablero
+      </a>
     </div>
     <div>
       <a href="./index.html" class="d-block my-5 p-5">Contacto</a>
     </div>
   </div>
 
-
-  <!--dashbord-->
-  <div class="container ">
-    <div class="row justify-content-center ">
+  <!--dashboard-->
+  <div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
       <!-- Formulario para añadir tareas -->
       <div class="col-6">
-        <form id="todo-form" class="d-flex flex-column align-items-center">
-          <div class="form-group d-flex align-items-center w-100">
-            <input type="text" class="form-control me-2" placeholder="Nueva tarea..." id="todo-input" />
-            <button type="submit" class="btn btn-primary">Añadir +</button>
-          </div>
+        <form id="todo-form" class="d-flex align-items-center w-100">
+          <input type="text" class="form-control me-2" placeholder="Nueva tarea..." id="todo-input" />
+          <button type="submit" class="btn btn-primary">Añadir +</button>
         </form>
       </div>
-
       <!-- Áreas de tareas -->
-      <div class="  p-5 diseño-newboard" id="title">
-        <div class=" lanes d-flex justify-content-between" id="status">
+      <div class="p-5 diseño-newboard" id="title">
+        <div class="lanes d-flex justify-content-between" id="status">
         </div>
       </div>
     </div>
+  </div>
 
+  <!-- Socket.IO Client -->
+  <script src="https://cdn.socket.io/4.7.1/socket.io.min.js"></script>
+  <script>
+    // Conexión al servidor
+    const socket = io('http://localhost:8000/task/tasks'); // Cambia la URL por tu servidor
+    // Escuchar un evento
+    socket.on('message', (data) => {
+      console.log('Mensaje recibido:', data);
+    });
 
+    // Enviar un evento
+    socket.emit('message', 'Hola desde el cliente');
+  </script>
 
-
-
-    <!--Javascript-->
-
-    <!-- <script src="tasksData.js"></script> -->
-    <script src="./js/tablaTareas.js"></script>
-    <script src="./js/socket.js"></script>
+  <!--Javascript-->
+  <!-- <script src="tasksData.js"></script> -->
+  <script src="./js/tablaTareas.js"></script>
+  <script src="./js/socket.js"></script>
 
 </body>
 
